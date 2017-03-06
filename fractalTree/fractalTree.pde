@@ -3,8 +3,17 @@ float camAngle = 0;
 
 int leafCount = 0;
 
+PShape globe;
+
 void setup(){
   size(800, 600, P3D);
+  
+  PImage flowers = loadImage("flower.jpg");
+  
+  noFill();
+  noStroke();
+  globe = createShape(SPHERE, 3);
+  globe.setTexture(flowers);
   
 }
 
@@ -19,7 +28,7 @@ void draw() {
   float branchAngle = map(mouseX, 0, width, 0, TWO_PI);
   
   
-  branch(100, 3, branchAngle);
+  branch(100, 8, branchAngle);
   leafCount = 0;
   
   camAngle += 0.01;
@@ -51,10 +60,10 @@ void branch(float branchLength, float branchWidth, float theta) {
       line(0, 0, 0, -branchLength);
       translate(0, -branchLength);
       
-      if (lastBranch && leafCount % 1000 == 0) {
-        fill(255, 100, 50);
-        noStroke();
-        sphere(6);
+      if (leafCount % 200 == 0 && leafCount != 0) {
+        
+        
+        shape(globe);
       }
       
       rotate(theta);
