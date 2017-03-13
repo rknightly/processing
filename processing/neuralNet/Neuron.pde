@@ -13,7 +13,7 @@ class Neuron {
   
   void makeConnections(Neuron[] neurons) {
     for (Neuron n : neurons) {
-      if (pos.dist(n.pos) < 70) {
+      if (pos.dist(n.pos) < 10) {
         connections.add(n);
       }
     }
@@ -22,7 +22,7 @@ class Neuron {
   void activate() {
     activated = true;
     currentCharge = 1;
-    timer = 10;
+    timer = 1;
   }
   
   void deactivate() {
@@ -52,21 +52,21 @@ class Neuron {
     }
     
     pushMatrix();
-    translate(pos.x, pos.y, pos.z);
+    translate(pos.x, pos.y);
     noStroke();
-    sphere(5);
+    ellipse(0, 0, 2, 2);
     popMatrix();
     
-    for (Neuron n : connections) {
-      if (activated) {
-        stroke(255);
-      } else {
-        stroke(100);
-      }
+    //for (Neuron n : connections) {
+    //  if (activated) {
+    //    stroke(255, 100);
+    //  } else {
+    //    stroke(100, 100);
+    //  }
       
-      strokeWeight(1);
-      line(pos.x, pos.y, pos.z, n.pos.x, n.pos.y, n.pos.z); 
-    }
+    //  strokeWeight(1);
+    //  line(pos.x, pos.y, n.pos.x, n.pos.y); 
+    //}
     
   }
 }

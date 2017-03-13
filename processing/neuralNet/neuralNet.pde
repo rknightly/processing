@@ -4,23 +4,24 @@ import peasy.org.apache.commons.math.geometry.*;
 
 Network net;
 
-PeasyCam cam;
-
 void setup() {
-  size(800, 400, P3D);
-  net = new Network(400, 200);
-  
-  cam = new PeasyCam(this, 500);
+  size(1200, 800);
+  net = new Network(50000, 300);
 }
 
 void draw() {
   background(0);
   net.update();
   net.draw();
+  println(frameRate);
 }
 
 void mousePressed() {
-  impulse();
+  if (mouseButton == LEFT) {
+    impulse();
+  } else {
+    net.deactivateAll();
+  }
 }
 
 void impulse() {

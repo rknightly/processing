@@ -22,9 +22,10 @@ class Network {
       //float dist = random(size);
       
       //PVector pos = dir.mult(dist);
-      PVector pos = new PVector(random(-size, size), random(-size, size), random(-size, size));
-      neurons[i] = new Neuron(pos, random(0, 10));
+      PVector pos = new PVector(random(width), random(height));
+      neurons[i] = new Neuron(pos, random(0, 3));
     }
+    println("neurons made");
   }
   
   void activateRandom(int n) {
@@ -33,10 +34,18 @@ class Network {
     }
   }
   
+  void deactivateAll() {
+    for (Neuron n : neurons) {
+      n.deactivate();
+    }
+  }
+      
+  
   void makeConnections() {
     for (Neuron n : neurons) {
        n.makeConnections(neurons); 
     }
+    println("connections made");
   }
   
   void update() {
