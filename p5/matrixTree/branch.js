@@ -7,6 +7,8 @@ function Branch(begin, end) {
     this.symbolsShowing = 0;
     this.doneGrowing = false;
 
+    this.streams = [];
+
     this.makeSymbols = function() {
         if (this.symbols.length > 0) {
             return;
@@ -52,6 +54,10 @@ function Branch(begin, end) {
             }
             this.symbols[i].show();
         }
+
+        this.streams.forEach(function(stream) {
+            stream.render();
+        });
     }
 
     this.branchA = function() {
@@ -80,10 +86,19 @@ function Branch(begin, end) {
 
     this.update = function() {
         // Show new symbols if appropriate
-        if (!this.doneGrowing && frameCount % 10 == 0) {
+        if (!this.doneGrowing && frameCount % 5 == 0) {
             this.showNewSymbol();
-            console.log("showing new");
         }
+        this.streams.forEach(function(stream) {
+            stream.update();
+        });
 
+    }
+
+    this.addStream = function() {
+        // choose starting location for stream from one of the symbols
+        var chosenSymbol = this.symbols[round(random(0, this.symbols.length-1))];
+        var stream = new Stream(chosenSymbol.x, chosenSymbol.y);
+        this.streams.push(stream);
     }
 }

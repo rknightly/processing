@@ -1,10 +1,10 @@
-function Stream(x) {
+function Stream(x, y) {
     this.symbols = [];
-    this.totalSymbols = round(random(height / symbolSize * 0.9, height / symbolSize));
+    this.totalSymbols = round(random(1, 16));
     this.decaySpeed = 0.2;
-    this.fallFreq = round(random(1, 2));
+    this.fallFreq = 3;
     this.x = x
-    this.y = random(0, -height);
+    this.y = y;
 
     this.update = function() {
         if (frameCount % this.fallFreq == 0) {
@@ -19,7 +19,6 @@ function Stream(x) {
         if (this.symbols.length > this.totalSymbols) {
             this.symbols.shift();
         }
-        console.log(this.symbols.length);
     }
 
     this.render = function() {
