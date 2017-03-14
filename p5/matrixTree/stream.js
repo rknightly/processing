@@ -2,7 +2,7 @@ function Stream(x, y) {
     this.symbols = [];
     this.totalSymbols = round(random(1, 16));
     this.decaySpeed = 0.2;
-    this.fallFreq = 2;
+    this.fallFreq = 1;
     this.x = x
     this.y = y;
 

@@ -4,10 +4,10 @@ var count = 0;
 
 var symbolSize = 20;
 var growthDelay = 10;
-var maxBranchLevels = 8;
+var maxBranchLevels = 9;
 var branchLevels = 0;
 
-var initialBranchLength = 200;
+var initialBranchLength = 250;
 
 var treeDoneGrowing = false;
 
