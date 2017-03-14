@@ -28,9 +28,11 @@ function Symbol(x, y, pos) {
     this.show = function() {
         if (this.first) {
             fill(180, 255, 180, this.alpha);
+            stroke(180, 255, 180, this.alpha);
         }
         else {
             fill(0, 255, 70, this.alpha);
+            stroke(0, 255, 70, this.alpha);
         }
         textAlign(CENTER);
         text(this.value, this.x, this.y);

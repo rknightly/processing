@@ -6,6 +6,7 @@ function Branch(begin, end) {
     this.symbols = [];
     this.symbolsShowing = 0;
     this.doneGrowing = false;
+    this.hasChildren = false;
 
     this.streams = [];
 
@@ -63,7 +64,7 @@ function Branch(begin, end) {
     this.branchA = function() {
         // return a child branch to the left
         var dir = this.vector.copy();
-        dir.rotate(PI / 6);
+        dir.rotate(random(-PI/2, -PI/8));
         dir.mult(0.67);
         var newEnd = p5.Vector.add(this.end, dir);
 
@@ -75,7 +76,7 @@ function Branch(begin, end) {
     this.branchB = function() {
         // return a child branch to the left
         var dir = p5.Vector.sub(this.end, this.begin);
-        dir.rotate(-PI / 4);
+        dir.rotate(random(PI/8, PI/2));
         dir.mult(0.67);
         var newEnd = p5.Vector.add(this.end, dir);
 
@@ -100,5 +101,9 @@ function Branch(begin, end) {
         var chosenSymbol = this.symbols[round(random(0, this.symbols.length-1))];
         var stream = new Stream(chosenSymbol.x, chosenSymbol.y);
         this.streams.push(stream);
+    }
+
+    this.whitenLast = function() {
+        this.symbols[this.symbols.length-1].first = true;
     }
 }

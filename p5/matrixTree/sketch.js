@@ -4,10 +4,10 @@ var count = 0;
 
 var symbolSize = 20;
 var growthDelay = 10;
-var maxBranchLevels = 9;
+var maxBranchLevels = 8;
 var branchLevels = 0;
 
-var initialBranchLength = 250;
+var initialBranchLength = 200;
 
 var treeDoneGrowing = false;
 
@@ -26,11 +26,11 @@ function setup() {
 
 function newBranches() {
     tree.forEach(function(branch) {
-        if (!branch.finished) {
+        if (!branch.hasChildren) {
             tree.push(branch.branchA());
             tree.push(branch.branchB());
 
-            branch.finished = true;
+            branch.hasChildren = true;
         }
     });
     count++;
@@ -70,7 +70,17 @@ function draw() {
         if (branchLevels < maxBranchLevels) {
             newBranches();
         } else {
+            if (!treeDoneGrowing) {
+                tree.forEach(function(branch) {
+                    if(!branch.hasChildren) {
+                        branch.whitenLast();
+                    }
+                });
+                console.log("ran");
+            }
             treeDoneGrowing = true;
+            // Whiten the last branches
+
         }
     }
 

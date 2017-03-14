@@ -2,7 +2,7 @@ function Stream(x, y) {
     this.symbols = [];
     this.totalSymbols = round(random(1, 16));
     this.decaySpeed = 0.2;
-    this.fallFreq = 3;
+    this.fallFreq = 2;
     this.x = x
     this.y = y;
 
@@ -25,23 +25,19 @@ function Stream(x, y) {
         for(var i=this.symbols.length-1; i>=0; i--){
             var symbol = this.symbols[i];
 
-            var alpha = map(i, 0, this.symbols.length-1, 0, 255);
-            if (symbol.first) {
-                fill(180, 255, 180, symbol.alpha);
-            } else {
-                fill(0, 255, 70, symbol.alpha);
-            }
-            text(symbol.value, symbol.x, symbol.y);
-            // symbol.rain();
-            if (symbol.shouldChange()) {
-                symbol.setToRandomSymbol();
-            }
             symbol.update();
+
             symbol.alpha = map(i,
                             this.symbols.length - this.totalSymbols,
                             this.symbols.length,
                             0,
                             255);
+
+            symbol.show();
+            if (symbol.shouldChange()) {
+                symbol.setToRandomSymbol();
+            }
+
         }
     }
     this.isComplete = function() {
